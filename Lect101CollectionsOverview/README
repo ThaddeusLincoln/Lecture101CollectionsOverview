@@ -1,0 +1,123 @@
+At the top of the collections framework is the Collections class, 
+which exposes static method that we can operate on collections, 
+like Collections.sort() but the also return collections objects. 
+
+
+The interfaces in the Collection framework what they do is that 
+they allow the framework to be extended. One of the goals of the 
+Collections framework is that there should be good interoperabily 
+between amongst the various collections, not just the ones included in the framework, 
+but literally anything that may also be created in the future that is a 
+reasonable representation of a collection (including arrays).
+
+Arrays themselves couldn't made part of the Collections framework 
+without changing the Java language. However Collections has methods 
+that allow converting a collection into an array an viceversa. 
+And additionally method to allow arrays to be viewed as collections. 
+
+The main components of the Collections frameworks are interfaces, 
+these are the abstract types that represent collections, 
+including the List interface. Another core component is Implementations, 
+which are a concrete implementation of the interface like the ArrayList
+and LinkedList classes. 
+
+Also algorithms, Java JDK provides a rango of polymorphic algorithms 
+that work on Collections objects. Technically speaking are objects 
+that implement the collection interface and provide reusable functionality 
+
+List<Seat> seats = new ArrayList<Seats>();
+
+will work the ase as:
+
+List<Seat> seats = new LinkedList<Seats>();
+
+
+the same as:
+
+Collection<Seat> seats = new LinkedList<Seats>();
+
+or (in this case the insertion order is not kept)
+
+Collection<Seat> seats = new HashSets<Seats>();
+
+Si queremos utilizar por ejemplo TreeSet que implemente NavigableSet
+que a su vez extiende SortedSet, tenemor que garantizar que nuestra 
+clase implemente Comparable. 
+
+Collections provides optimal search methods, which of course 
+need us to implement the comparable interface in out classes. 
+
+NOTE : if we're using the in-build comparator of Collections.binarySearch() we pass the 3rd parameter as null.
+
+e.g : Collections.binarySearch(seats, requestedSeat, null);
+
+NOTE : a binary search is the most efficient search in a sorted list. 
+
+If need Collections.sort() uses mergeSort().
+
+
+Collection.copy(), doens't work as expected, it only copies a list into an 
+existing one but at least of the same size (same size, not capacity). 
+From the 2 parameters, the destination has to be of generic type and 
+the source must be a list.
+
+Collection.copy(), it doesn't work the same way as it does the ArrayList 
+constructor where a deep copy is made. A deep copy is a copy where the elements 
+are not just referenced to the same elements as in the original list but are themselves copid. 
+
+Instead Collections.copy():
+1 - makes a shalow copy (elements are referenced)
+2 - is gonna check if the destination is big enough to hold all the elements to be copied into it
+2.1 implying that the destination collection shoud have source.size() numbers of elements already... pointeless
+3. This second characteristics makes Collections.copy() pretty much useless 
+
+
+NOTE: Modifications applied to collections that share the same memory 
+will be applied, without affecting the rest. This happens because even 
+if they share the same data they are different collections.
+
+NOTE : Collections has a swap() method. BubbleSort() an optima bubbleSort() 
+could be useful in a situation where memory speed is not they, 
+but memory usage, taking into consideration that mergeSort() requires 
+far more memory than bubbleSort and this could be an issue with extreme large lists.
+
+Comparable & Comparator interfaces ======================================
+
+Comparator interface defines a single method called compare(). 
+Unlike Comparable, the objects to be sorted don't have to implement 
+comparator. Instead objects of type Comparator can be created with a compare() 
+method that can sort the object that we're interested in.
+
+More than one Comparator can be created and it allows for objects to be sorted 
+in different ways which is pretty cool. Also we can either create a Comparator 
+inside an existing class (an anonymous class) or we can create a new class which
+implements the Comparator interace. 
+
+NOTE : In Java doc is a recurrent phrase "an ordering that is consistent 
+with equals", which really means is that a method that produces an ordering that is consistent with equals will only return 0, if the elements being compared actually are equal. 
+
+
+MAP INTERFACE ========================================================
+
+Map Interface is part of the Collections framework, even if it's not a 
+true collection (in the true sense of the word). Map interface replaces 
+Dictionaries, which is a now obsoloete abstract class. The analogy with 
+a language dictionar fails, when is many languages many words have the 
+same meaning, e.g, words like put have 4 definitions two as verb and 
+two as a noun. While java force keys to be uniques, each key can only map a single value.
+
+It's possible to use raw types with maps, but this ain't a good idea, better to use generics.
+ 
+NOTE: In maps keys are uniques, so if you add another time the key, the old one is overwritten. 
+
+NOTE: the put() in Map, returns null if we're adding a brand new key-value pair, 
+if not we get the previous value in that key, value entry. 
+We can use containsKey() to make sure not to override a key.
+
+There's also putIfAbsent() which will add  to the map if the key is not already present, 
+but this method is more intended to prevent convurrency issues. So that one thread doesn't 
+adds to the map only for that entry to be overwritten by another thread. So it doesn't 
+helps in the null case because it will hapilly override key with null values.
+
+NOTE : There's no guarantee of order with the HashMap
+
