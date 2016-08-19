@@ -2,6 +2,7 @@ package com.turing.jdev.collections;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -32,8 +33,18 @@ public class Theater {
 	}
 	
 	public boolean reserveSeat(String seatNumber){
-		Seat requestedSeat = null;
-		for(Seat seat : seats){
+		
+		Seat requestedSeat = new Seat(seatNumber);
+		int foundSeat = Collections.binarySearch(seats, requestedSeat, null); // if we're using the in-build comparator of Collections.binarySearch() we pass the 3rd parameter as null. 
+		if(foundSeat >= 0){
+			return seats.get(foundSeat).reserve();
+		}else{
+			System.out.println("There's no seat " + seatNumber);
+			return false;
+		}
+		
+		// because of the binary search this code now is not needed
+		/*for(Seat seat : seats){
 			System.out.print("."); // to have a visual perception of the number of iterations made
 			if(seat.getSeatNumber().equals(seatNumber)){
 				requestedSeat = seat;
@@ -46,7 +57,7 @@ public class Theater {
 			return false;
 		}
 		
-		return requestedSeat.reserve();
+		return requestedSeat.reserve();*/
 	}
 	
 	// for testing
