@@ -1,12 +1,13 @@
 package com.turing.jdev.collections;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class Theater {
 	
 	private final String theaterName;
-	private List<Seat> seats = new ArrayList<Seat>();
+	// private List<Seat> seats = new ArrayList<Seat>();
+	private Collection<Seat> seats = new LinkedList<Seat>();
 	
 	public Theater(String theaterName, int numRows, int seatsPerRow){
 		this.theaterName = theaterName;
