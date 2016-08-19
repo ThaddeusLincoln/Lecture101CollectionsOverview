@@ -1,13 +1,19 @@
 package com.turing.jdev.collections;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 public class Theater {
 	
 	private final String theaterName;
-	// private List<Seat> seats = new ArrayList<Seat>();
-	private Collection<Seat> seats = new LinkedList<Seat>();
+	private List<Seat> seats = new ArrayList<Seat>();
+	// the follwing will work the same as the line above
+	// private Collection<Seat> seats = new LinkedList<Seat>();
+	// private Collection<Seat> seats = new HashSet<Seat>();
+	// private Collection<Seat> seats = new LinkedHashSet<Seat>();
+	
 	
 	public Theater(String theaterName, int numRows, int seatsPerRow){
 		this.theaterName = theaterName;
@@ -28,6 +34,7 @@ public class Theater {
 	public boolean reserveSeat(String seatNumber){
 		Seat requestedSeat = null;
 		for(Seat seat : seats){
+			System.out.print("."); // to have a visual perception of the number of iterations made
 			if(seat.getSeatNumber().equals(seatNumber)){
 				requestedSeat = seat;
 				break;
