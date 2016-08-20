@@ -39,6 +39,10 @@ public class MapProgram {
 			System.out.println(key + " : " + languages.get(key));
 		}
 		
+		languages.remove("Delphi");
+		// languages.remove("Delphi", "Old language");	// returns a boolean and it's Java 8 functionality
+		
+		
 	}
 
 }

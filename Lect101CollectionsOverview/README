@@ -103,7 +103,7 @@ MAP INTERFACE ========================================================
 Map Interface is part of the Collections framework, even if it's not a 
 true collection (in the true sense of the word). Map interface replaces 
 Dictionaries, which is a now obsoloete abstract class. The analogy with 
-a language dictionar fails, when is many languages many words have the 
+a language dictionary fails, when is many languages many words have the 
 same meaning, e.g, words like put have 4 definitions two as verb and 
 two as a noun. While java force keys to be uniques, each key can only map a single value.
 
@@ -116,9 +116,16 @@ if not we get the previous value in that key, value entry.
 We can use containsKey() to make sure not to override a key.
 
 There's also putIfAbsent() which will add  to the map if the key is not already present, 
-but this method is more intended to prevent convurrency issues. So that one thread doesn't 
+but this method is more intended to prevent concurrency issues. So that one thread doesn't 
 adds to the map only for that entry to be overwritten by another thread. So it doesn't 
-helps in the null case because it will hapilly override key with null values.
+helps in the null case because it will happily override key with null values.
 
 NOTE : There's no guarantee of order with the HashMap
+
+NOTE : In Java, maps can contain as key and value, any object, we can even use a map 
+as the value in another map (or even the map, as a value to itself, not a good idea though :D)
+Unkile other languages such as Python there's no requirement for the keys to be immutable objects,
+like Strings and Integers whose values can't change.
+
+
 
