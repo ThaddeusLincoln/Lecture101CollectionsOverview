@@ -9,7 +9,7 @@ import java.util.List;
 public class Theater {
 	
 	private final String theaterName;
-	private List<Seat> seats = new ArrayList<Seat>();
+	public List<Seat> seats = new ArrayList<Seat>();
 	// the following will work the same as the line above
 	// private Collection<Seat> seats = new LinkedList<Seat>();
 	// private Collection<Seat> seats = new HashSet<Seat>();
@@ -37,7 +37,7 @@ public class Theater {
 		int low = 0;
 		int high = seats.size() - 1;
 
-		while(high >= low) {
+		while(low <= high ) {
 			System.out.print(".");
 			int mid = (low + high) / 2;
 			Seat midVal = seats.get(mid);
@@ -46,8 +46,8 @@ public class Theater {
 			if(cmp < 0) {
 				low = mid + 1;
 			}
-			else if(cmp < 0) {
-				high= mid - 1;
+			else if(cmp > 0) {
+				high = mid - 1;
 			}
 			else {
 				return seats.get(mid).reserve();
@@ -65,8 +65,8 @@ public class Theater {
 		}
 	}
 	
-	// CLASS SEAT
-	private class Seat implements Comparable<Seat>{
+	// making the nested class program obeys only to testing/learning purposes, we wouldn't do that in real life
+	public class Seat implements Comparable<Seat>{
 		private final String seatNumber;
 		private boolean reserved = false;
 		
@@ -77,7 +77,7 @@ public class Theater {
 		public boolean reserve(){
 			if(!this.reserved){
 				this.reserved = true;
-				System.out.println("Seat " + seatNumber + " reserved");
+				System.out.println("Seat: " + seatNumber + " reserved");
 				return true;
 			}else{
 				return false;

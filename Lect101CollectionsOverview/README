@@ -63,7 +63,7 @@ the source must be a list.
 
 Collection.copy(), it doesn't work the same way as it does the ArrayList 
 constructor where a deep copy is made. A deep copy is a copy where the elements 
-are not just referenced to the same elements as in the original list but are themselves copid. 
+are not just referenced to the same elements as in the original list but are themselves copied. 
 
 Instead Collections.copy():
 1 - makes a shalow copy (elements are referenced)
