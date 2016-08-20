@@ -14,7 +14,12 @@ public class MapProgram {
 		System.out.println(languages.get("Java"));
 		languages.put("Java", "A java once was a cup of coffee, you know.... once upon a time");
 		System.out.println(languages.get("Java"));
-
+		
+		// will return null if the key didn't existed before
+		System.out.println(languages.put("Delphi", "Cuando era joven y alocado... :) "));
+		
+		// will return the value in the pair key-value, of the key that's is gonna be dupplicated
+		System.out.println(languages.put("C#", "College college... MATCOM!"));
 	}
 
 }
