@@ -22,7 +22,14 @@ public class Theater {
 		int lastRow='A' + (numRows-1);
 		for(char row = 'A'; row <= lastRow; row++){
 			for(int seatNum = 1; seatNum <= seatsPerRow; seatNum++){
-				Seat seat = new Seat(row + String.format("%02d", seatNum));
+				
+				double price = 12.00;
+				if(row < 'D' && (seatNum >= 4 && seatNum <= 9)){
+					price = 14.00;
+				}else if (row > 'F' || (seatNum < 4 || seatNum > 9)){
+					price = 7.00;
+				}
+				Seat seat = new Seat(row + String.format("%02d", seatNum), price);
 				seats.add(seat);
 			}
 		}
@@ -34,44 +41,30 @@ public class Theater {
 	
 	public boolean reserveSeat(String seatNumber){
 		
-		int low = 0;
-		int high = seats.size() - 1;
-
-		while(low <= high ) {
-			System.out.print(".");
-			int mid = (low + high) / 2;
-			Seat midVal = seats.get(mid);
-			int cmp = midVal.getSeatNumber().compareTo(seatNumber);
-			
-			if(cmp < 0) {
-				low = mid + 1;
-			}
-			else if(cmp > 0) {
-				high = mid - 1;
-			}
-			else {
-				return seats.get(mid).reserve();
-			}
+		Seat requestedSeat = new Seat(seatNumber, 0);
+		int foundSeat = Collections.binarySearch(seats, requestedSeat, null); // if we're using the in-build comparator of Collections.binarySearch() we pass the 3rd parameter as null. 
+		if(foundSeat >= 0){
+			return seats.get(foundSeat).reserve();
+		}else{
+			System.out.println("There's no seat " + seatNumber);
+			return false;
 		}
-		
-		return false;
 	}
 	
 	// for testing
-	public void getSeats(){
-		
-		for(Seat seat : seats){
-			System.out.println(seat.getSeatNumber());
-		}
+	public Collection<Seat> getSeats(){
+		return seats;
 	}
 	
 	// making the nested class program obeys only to testing/learning purposes, we wouldn't do that in real life
 	public class Seat implements Comparable<Seat>{
 		private final String seatNumber;
 		private boolean reserved = false;
+		private double price;
 		
-		private Seat(String seatNumber){
+		private Seat(String seatNumber, double price){
 			this.seatNumber = seatNumber;
+			this.price = price;
 		}
 		
 		public boolean reserve(){
@@ -96,6 +89,10 @@ public class Theater {
 		
 		public String getSeatNumber(){
 			return seatNumber; 
+		}
+		
+		public double getPrice(){
+			return this.price;
 		}
 
 		@Override

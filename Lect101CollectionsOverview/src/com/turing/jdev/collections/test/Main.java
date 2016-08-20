@@ -13,7 +13,9 @@ public class Main {
 		
 		// the right way to copy a collection, Collections.copy() works... not very nicely
 		List<Theater.Seat> seatCopy = new ArrayList<Theater.Seat>(theater.seats);
-		// printList(seatCopy);
+		printList(seatCopy);
+		Collections.reverse(seatCopy);
+		printList(seatCopy);
 		
 		// reserving A02, which affects both arrays as they share the same data ....
 		seatCopy.get(1).reserve(); 		
@@ -23,45 +25,17 @@ public class Main {
 			System.out.println("seat already reserved");
 		}
 		
-		// ... but they're still different collections, the reverse method doens't affect both structures
-		/*Collections.reverse(seatCopy);
-		System.out.println("Printing seatCopy" );
-		printList(seatCopy);
-		System.out.println("theter.seats" );
-		printList(theater.seats);
 		
-		// we can also use
-		// Collections.shuffle(seatCopy);
-		
-		// we can also obtain the MAX an MIN according to the natural order of our collection
-		Theater.Seat minSeat = Collections.min(seatCopy);
-		Theater.Seat maxSeat = Collections.max(seatCopy);
-		System.out.println("minSeat " + minSeat.getSeatNumber());
-		System.out.println("maxSeat " + maxSeat.getSeatNumber());*/
-		
-		sortList(seatCopy);
-		System.out.println("Printing seatCopy after bubble sort" );
-		printList(seatCopy);
 	}
 	
 	public static void printList(List<Theater.Seat> list){
 		for(Theater.Seat seat : list){
-			System.out.print(" " + seat.getSeatNumber());
+			System.out.print(" " + seat.getSeatNumber() + " " + seat.getPrice());
 		}
 		System.out.println();
 		System.out.println("=====================================================================================");
 	}
 	
-	// out own bubble sort to test Collections.swap()
-	public static void sortList(List<? extends Theater.Seat> list){
-		for(int i = 0; i < list.size() - 1; i++){
-			for(int j = i + 1; j < list.size(); j++){
-				
-				if(list.get(i).compareTo(list.get(j)) > 0){
-					Collections.swap(list, i, j);    // using Collections.swap()
-				}
-			}
-		}
-	}
+	
 	
 }
