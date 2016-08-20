@@ -8,6 +8,12 @@ public class MapProgram {
 	public static void main(String[] args) {
 		
 		Map<String, String> languages = new HashMap<String, String>();
+		/*if(languages.containsKey("Java")){
+			System.out.println("Java is already in the map");
+		}else{
+			System.out.println("Java daba dooo!");
+		}*/
+		
 		languages.put("Java", "Always strong");
 		languages.put("C#", "The North Remembers");
 		
@@ -20,6 +26,19 @@ public class MapProgram {
 		
 		// will return the value in the pair key-value, of the key that's is gonna be dupplicated
 		System.out.println(languages.put("C#", "College college... MATCOM!"));
+		
+		// checking out that the key doesn't exist before adding it
+		if(languages.containsKey("Java")){
+			System.out.println("Java is already in the map");
+		}else{
+			System.out.println("Java daba dooo!");
+		}
+		
+		// there's no guarantee of order when using a map
+		for(String key : languages.keySet()){
+			System.out.println(key + " : " + languages.get(key));
+		}
+		
 	}
 
 }
