@@ -30,7 +30,14 @@ public class Main {
 		System.out.println("theter.seats" );
 		printList(theater.seats);
 		
+		// we can also use
+		// Collections.shuffle(seatCopy);
 		
+		// we can also obtain the MAX an MIN according to the natural order of our collection
+		Theater.Seat minSeat = Collections.min(seatCopy);
+		Theater.Seat maxSeat = Collections.max(seatCopy);
+		System.out.println("minSeat " + minSeat.getSeatNumber());
+		System.out.println("maxSeat " + maxSeat.getSeatNumber());
 	}
 	
 	public static void printList(List<Theater.Seat> list){
