@@ -15,7 +15,7 @@ public class Theater {
 	// ANONYMOUS INNER CLASS IMPLEMENTING A COMPARATOR
 	// TODO : make this comparator produce an ordering that is consisting to equals, meaning:
 	// it will only return 0, if the elements being compared actually are equal.
-	// whic this comparator doesn't yet accomplishes because there can be N seats with the same price
+	// which this comparator doesn't yet accomplishes because there can be N seats with the same price
 	public static final Comparator<Seat> PRICE_ORDER = new Comparator<Theater.Seat>() {
 		@Override
 		public int compare(Seat seat1, Seat seat2) {
