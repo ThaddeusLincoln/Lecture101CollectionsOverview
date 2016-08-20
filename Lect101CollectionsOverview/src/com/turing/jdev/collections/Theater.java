@@ -10,7 +10,7 @@ public class Theater {
 	
 	private final String theaterName;
 	private List<Seat> seats = new ArrayList<Seat>();
-	// the follwing will work the same as the line above
+	// the following will work the same as the line above
 	// private Collection<Seat> seats = new LinkedList<Seat>();
 	// private Collection<Seat> seats = new HashSet<Seat>();
 	// private Collection<Seat> seats = new LinkedHashSet<Seat>();
@@ -34,30 +34,27 @@ public class Theater {
 	
 	public boolean reserveSeat(String seatNumber){
 		
-		Seat requestedSeat = new Seat(seatNumber);
-		int foundSeat = Collections.binarySearch(seats, requestedSeat, null); // if we're using the in-build comparator of Collections.binarySearch() we pass the 3rd parameter as null. 
-		if(foundSeat >= 0){
-			return seats.get(foundSeat).reserve();
-		}else{
-			System.out.println("There's no seat " + seatNumber);
-			return false;
-		}
-		
-		// because of the binary search this code now is not needed
-		/*for(Seat seat : seats){
-			System.out.print("."); // to have a visual perception of the number of iterations made
-			if(seat.getSeatNumber().equals(seatNumber)){
-				requestedSeat = seat;
-				break;
+		int low = 0;
+		int high = seats.size() - 1;
+
+		while(high >= low) {
+			System.out.print(".");
+			int mid = (low + high) / 2;
+			Seat midVal = seats.get(mid);
+			int cmp = midVal.getSeatNumber().compareTo(seatNumber);
+			
+			if(cmp < 0) {
+				low = mid + 1;
+			}
+			else if(cmp < 0) {
+				high= mid - 1;
+			}
+			else {
+				return seats.get(mid).reserve();
 			}
 		}
 		
-		if(requestedSeat == null){
-			System.out.println("There is no seat " + seatNumber);
-			return false;
-		}
-		
-		return requestedSeat.reserve();*/
+		return false;
 	}
 	
 	// for testing
@@ -105,7 +102,6 @@ public class Theater {
 		public int compareTo(Seat otherSeat) {
 			return this.seatNumber.compareToIgnoreCase(otherSeat.getSeatNumber());	// using compareTo() from String
 		}
-		
 	}
 
 }
