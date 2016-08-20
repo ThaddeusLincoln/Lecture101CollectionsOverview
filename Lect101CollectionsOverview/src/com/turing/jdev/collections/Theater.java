@@ -3,6 +3,7 @@ package com.turing.jdev.collections;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -10,11 +11,24 @@ public class Theater {
 	
 	private final String theaterName;
 	public List<Seat> seats = new ArrayList<Seat>();
-	// the following will work the same as the line above
-	// private Collection<Seat> seats = new LinkedList<Seat>();
-	// private Collection<Seat> seats = new HashSet<Seat>();
-	// private Collection<Seat> seats = new LinkedHashSet<Seat>();
 	
+	// ANONYMOUS INNER CLASS IMPLEMENTING A COMPARATOR
+	// TODO : make this comparator produce an ordering that is consisting to equals, meaning:
+	// it will only return 0, if the elements being compared actually are equal.
+	// whic this comparator doesn't yet accomplishes because there can be N seats with the same price
+	public static final Comparator<Seat> PRICE_ORDER = new Comparator<Theater.Seat>() {
+		@Override
+		public int compare(Seat seat1, Seat seat2) {
+			
+			if(seat1.getPrice() < seat2.getPrice()){
+				return -1;
+			}else if (seat1.getPrice() > seat2.getPrice()){
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+	};
 	
 	public Theater(String theaterName, int numRows, int seatsPerRow){
 		this.theaterName = theaterName;
@@ -62,7 +76,7 @@ public class Theater {
 		private boolean reserved = false;
 		private double price;
 		
-		private Seat(String seatNumber, double price){
+		public Seat(String seatNumber, double price){
 			this.seatNumber = seatNumber;
 			this.price = price;
 		}

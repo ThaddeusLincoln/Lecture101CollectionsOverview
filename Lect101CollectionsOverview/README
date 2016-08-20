@@ -94,7 +94,8 @@ inside an existing class (an anonymous class) or we can create a new class which
 implements the Comparator interace. 
 
 NOTE : In Java doc is a recurrent phrase "an ordering that is consistent 
-with equals", which really means is that a method that produces an ordering that is consistent with equals will only return 0, if the elements being compared actually are equal. 
+with equals", which really means is that a method that produces an ordering 
+that is consistent with equals will only return 0, if the elements being compared actually are equal. 
 
 
 MAP INTERFACE ========================================================

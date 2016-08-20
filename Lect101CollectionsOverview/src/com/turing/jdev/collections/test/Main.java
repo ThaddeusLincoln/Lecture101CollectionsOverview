@@ -25,6 +25,13 @@ public class Main {
 			System.out.println("seat already reserved");
 		}
 		
+		// testing comparator
+		List<Theater.Seat> priceSeats = new ArrayList<Theater.Seat>(theater.getSeats());
+		priceSeats.add(theater.new Seat("B00", 14.00));
+		priceSeats.add(theater.new Seat("A00", 14.00));
+		Collections.sort(priceSeats, Theater.PRICE_ORDER);
+		System.out.println("Printing priceSeats after sort with comparator");
+		printList(priceSeats);
 		
 	}
 	
